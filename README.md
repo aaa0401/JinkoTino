@@ -29,12 +29,30 @@ model.compile(optimizer=オプティマイザ, loss=誤差関数, matrics=評価
 model.fit()
 
 #torch
-
 ```
-
+- verbose：1=プログレスバーの表示
 
 ## 誤差関数(クライテリオンcriterion)
-- クロスエントロピー：いろんな種類があるね
+- crossentropy
+- binary_crossentropy
+kerasではコンパイル時にloss=""で決定。torchは毎回criterion(x, y)で求めた後にGradientTapeで勾配を求める
 
 ## オプティマイザ
 - SGD(確率的降下法)：カス
+
+### その他の小手先
+- Heの重み初期化
+- Xavierの重み初期化
+- バッチ正規化
+
+# RNN
+## BPTT
+時系列モデルではその時間の出力層だけでなく未来の隠れ層からも誤差を受け取る
+
+## 気をつけること
+- 直交行列を用いた重み初期化(np.linalg.svd()で求められる)
+- ReLUを用いると発散する。シグモイドかtanh
+
+
+# 関係ないけど覚えておくべき技術
+- seed固定：いい結果が出たときseedがわかんないと再現できないぞ☆
