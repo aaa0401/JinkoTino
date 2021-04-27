@@ -8,8 +8,15 @@ model.Sequenctial()
 model.add(Dense(3, activation='sigmoid'))
 
 # torch
-nn.Linear(入力次元, 出力次元)
-nn.Sigmoid()
+class DNN(nn.module)
+  def __init__():
+    l1 = nn.Linear(入力次元, 出力次元)
+    a1 = nn.Sigmoid()
+    
+  def forward():
+    入力xにレイヤーの関数を掛けていく処理
+
+
 ``` 
 層を宣言していき、同じxに対して順番に関数を適用することで学習を再現。
 
@@ -17,10 +24,16 @@ nn.Sigmoid()
 - 全結合：```Dense(ユニット数、活性化関数) nn.Linear(入力次元、出力次元)```
 
 ## 活性化関数
-- シグモイド関数：わからん
-- ReLU：すごいやつ
-- ソフトマックス：クラス分類はこれ
-- 恒等写像：使われてるのかな
+- Sigmoid：わからん
+- tanh：シグモイドに比べて勾配が消失しにくい
+- ReLU：tanhに比べて高次元において勾配が消えにくい
+- leakyReLU：負の場合でも傾き!=0としたためReLUの問題を解決したが、効果はまちまち
+- ParametricReLU：勾配自体も学習内で変えていこうというもの
+- ELU：
+- softmax：クラス分類はこれ
+勾配消失問題は層が深くなると発散したり0になったりすること。うまく活性化関数を選ばないとこうなる。  
+ReLUは学習率が大きい場合、一度負となり(傾き0)不活性化したニューロンが再び活性化しにくいという難点がある。  
+
 
 ## モデルの学習
 ```python
@@ -28,13 +41,19 @@ nn.Sigmoid()
 model.compile(optimizer=オプティマイザ, loss=誤差関数, matrics=評価指標) # 学習の設定
 model.fit()
 
-#torch
+# torch
+criterion = torch.nn.CrossEntropyLoss()
+optimus = torch.optim.SGD(model.parameters(), lr=0.1)
+
+#以下学習の1ステップ
 ```
 - verbose：1=プログレスバーの表示
 
-## 誤差関数(クライテリオンcriterion)
-- crossentropy
-- binary_crossentropy
+
+## 誤差関数(criterion)
+- "crossentropy"
+- "binary_crossentropy"
+- BCELoss
 kerasではコンパイル時にloss=""で決定。torchは毎回criterion(x, y)で求めた後にGradientTapeで勾配を求める
 
 ## オプティマイザ
@@ -44,6 +63,7 @@ kerasではコンパイル時にloss=""で決定。torchは毎回criterion(x, y)
 - Heの重み初期化
 - Xavierの重み初期化
 - バッチ正規化
+- シャッフル
 
 # RNN
 ## BPTT
