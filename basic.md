@@ -6,12 +6,21 @@
 # keras
 model.Sequenctial()
 model.add(Dense(3, activation='sigmoid'))
+...
+
+# tf
+class MLP(Model):
+  def __init__():
+    self.l1 = Dense(ユニット数, activation=活性化関数)
+    
+  def call():
+    
 
 # torch
 class DNN(nn.module)
   def __init__():
-    l1 = nn.Linear(入力次元, 出力次元)
-    a1 = nn.Sigmoid()
+    self.l1 = nn.Linear(入力次元, 出力次元)
+    self.a1 = nn.Sigmoid()
     
   def forward():
     入力xにレイヤーの関数を掛けていく処理
