@@ -22,8 +22,6 @@ class DNN(nn.module)
 
 ## 層の種類
 - 全結合：```Dense(ユニット数、活性化関数) nn.Linear(入力次元、出力次元)```
-- 全結合の中間層を持つRNN```SimpleRNN(ユニット数, activation=活性化関数, ...)```
-- 
 
 ## 活性化関数
 - Sigmoid：わからん
@@ -40,7 +38,7 @@ ReLUは学習率が大きい場合、一度負となり(傾き0)不活性化し�
 
 ## モデルの学習
 ```python
-# keras
+# keras, tf
 model.compile(optimizer=オプティマイザ, loss=誤差関数, matrics=評価指標) # 学習の設定
 hist = model.fit(学習データ, 学習ラベル, epochs=エポック数, batch_size=バッチサイズ)
 
@@ -71,21 +69,16 @@ kerasではコンパイル時にloss=""で決定。torchは毎回criterion(x, y)
 - SGD(確率的降下法)：カス
 - ADAM
 
-### その他の小手先
+### 学習に関連する小手先
 - Heの重み初期化
 - Xavierの重み初期化
 - バッチ正規化
 - シャッフル
 - 早期終了 ```EarlyStopping(monitor='val_loss'), patience=最大上昇, verbose=1)
 
-# RNN
-## BPTT
-時系列モデルではその時間の出力層だけでなく未来の隠れ層からも誤差を受け取る
-
-## 気をつけること
-- 直交行列を用いた重み初期化(np.linalg.svd()で求められる)
-- ReLUを用いると発散する。シグモイドかtanh
-
-
 # 関係ないけど覚えておくべき技術
 - seed固定：いい結果が出たときseedがわかんないと再現できないぞ☆
+
+# 有用な関数
+- reshape：形を整える
+- device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
