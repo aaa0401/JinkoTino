@@ -11,7 +11,8 @@ class DNN(nn.module)
   def forward():
     入力xにレイヤーの関数を掛けていく処理
 ``` 
-層を宣言していき、同じxに対して順番に関数を適用することで学習を再現。
+層を宣言していき、同じxに対して順番に関数を適用することで学習を再現。  
+一般に回帰は二乗誤差、ReLU。二値分類は。多クラス分類は交差エントロピー、ソフトマックス。
 
 ## 層の種類
 - 全結合：```Dense(ユニット数、活性化関数) nn.Linear(入力次元、出力次元)```
@@ -50,8 +51,8 @@ optimiser.step()
 - "crossentropy"
 - "binary_crossentropy"
 - BCELoss
-- MeanSquadError:MSELoss
-kerasではコンパイル時にloss=""で決定。torchは毎回criterion(x, y)で求めた後にGradientTapeで勾配を求める
+- MSELoss(Mean Squad Error)：回帰問題
+torchは毎回criterion(x, y)で求めた後にGradientTapeで勾配を求める
 
 ## オプティマイザ
 - SGD(確率的降下法)：カス
