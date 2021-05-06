@@ -3,20 +3,6 @@
 
 ## モデルの構築
 ```python
-# keras
-model.Sequenctial()
-model.add(Dense(3, activation='sigmoid'))
-...
-
-# tf
-class MLP(Model):
-  def __init__():
-    self.l1 = Dense(ユニット数, activation=活性化関数)
-    
-  def call():
-    
-
-# torch
 class DNN(nn.module)
   def __init__():
     self.l1 = nn.Linear(入力次元, 出力次元)
@@ -24,8 +10,6 @@ class DNN(nn.module)
     
   def forward():
     入力xにレイヤーの関数を掛けていく処理
-
-
 ``` 
 層を宣言していき、同じxに対して順番に関数を適用することで学習を再現。
 
@@ -47,11 +31,6 @@ ReLUは学習率が大きい場合、一度負となり(傾き0)不活性化し�
 
 ## モデルの学習
 ```python
-# keras, tf
-model.compile(optimizer=オプティマイザ, loss=誤差関数, matrics=評価指標) # 学習の設定
-hist = model.fit(学習データ, 学習ラベル, epochs=エポック数, batch_size=バッチサイズ)
-
-# torch
 criterion = torch.nn.CrossEntropyLoss(reduction=減衰法)
 optimus = torch.optim.SGD(model.parameters(), lr=0.1)
 
