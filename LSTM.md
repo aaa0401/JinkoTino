@@ -43,5 +43,18 @@ Encoderでは何も行わず、ただただ加えられた入力データを一�
 Attentionではでコーターの各時刻において、入力シーケンスの各時刻における値を加重平均したものを用いる。
 - スコア関数：加重平均の際の各入力の重みを決める関数
 
+# Transformer
+非常に複雑な形式をしている。Attentionのスコア関数にはいくつかある。
+- Additive Attention：計算コストが大きいが、特徴量次元が多い場合に有効
+- Dot-Product Attention：パラメーターが少ないため計算コストが小さいが、次元んが同じでなければ計算不可
+以上はSource-Target-Attentionと呼ばれ、一つの系列データのみに適用するものをSelf-Attentionと呼ぶ。  
+TransformerではエンコーダーデコーダーそれぞれでSelf-Attentionが行われ、つなぎ目でSource-Target-Attentionが用いられる。  
+クエリ―・キーとあるが、要はキーに行列を投げて帰ってきた値をバリューに掛けて使う程度の解釈。
+- Scaled Dot-Product Attention：SourceとSelfをまとめて一つで扱えるようにしたもの
+- 残差接続：下の層の出力に下の層の入力を足したもの。誤差が逆伝搬しやすくなる。
+- Layer Normalization：ある層の特徴量次元を用いて各データを正規化する。
+- Multi-Head Attention：Scaled...を並列に行う層
+- Positional Encoding：斉木敬さんを行わずに系列データに直接順序関係を埋め込む方法。
+
 
 
