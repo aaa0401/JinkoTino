@@ -46,7 +46,7 @@ Attentionではでコーターの各時刻において、入力シーケンス�
 # Transformer
 非常に複雑な形式をしている。Attentionのスコア関数にはいくつかある。
 - Additive Attention：計算コストが大きいが、特徴量次元が多い場合に有効
-- Dot-Product Attention：パラメーターが少ないため計算コストが小さいが、次元んが同じでなければ計算不可
+- Dot-Product Attention：パラメーターが少ないため計算コストが小さいが、次元が同じでなければ計算不可  
 以上はSource-Target-Attentionと呼ばれ、一つの系列データのみに適用するものをSelf-Attentionと呼ぶ。  
 TransformerではエンコーダーデコーダーそれぞれでSelf-Attentionが行われ、つなぎ目でSource-Target-Attentionが用いられる。  
 クエリ―・キーとあるが、要はキーに行列を投げて帰ってきた値をバリューに掛けて使う程度の解釈。
